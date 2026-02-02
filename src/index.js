@@ -85,6 +85,10 @@ adapter.onTurnError = async (context, error) => {
     console.error('❌ ERROR NO MANEJADO EN EL BOT');
     console.error('═══════════════════════════════════════');
     console.error(`Mensaje: ${error.message}`);
+    console.error(`Nombre: ${error.name}`);
+    console.error(`Código: ${error.code}`);
+    console.error(`Status: ${error.statusCode}`);
+    console.error(`Detalles: ${JSON.stringify(error.details || error.body || {})}`);
     console.error(`Stack: ${error.stack}`);
     console.error('═══════════════════════════════════════');
     
