@@ -11,7 +11,7 @@ const config = {
     // ============================================
     MicrosoftAppId: process.env.MICROSOFT_APP_ID,
     MicrosoftAppPassword: process.env.MICROSOFT_APP_PASSWORD,
-    MicrosoftAppType: process.env.MICROSOFT_APP_TYPE || 'MultiTenant',
+    MicrosoftAppType: process.env.MICROSOFT_APP_TYPE || 'SingleTenant',
     MicrosoftAppTenantId: process.env.MICROSOFT_APP_TENANT_ID,
     
     // ============================================
