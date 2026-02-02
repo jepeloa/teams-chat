@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Environment variables (IMPORTANTE: no commitear secrets)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+
+# Teams app package
+*.zip
+
+# Temporary files
+tmp/
+temp/
+*.txt
+.env

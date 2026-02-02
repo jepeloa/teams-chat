@@ -1,0 +1,68 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.16",
+    "version": "1.0.0",
+    "id": "7a9856c0-bba7-422e-9699-7950de7c23c3",
+    "packageName": "com.tuempresa.teamsaibot",
+    "developer": {
+        "name": "Tu Empresa o Nombre",
+        "websiteUrl": "https://tuempresa.com",
+        "privacyUrl": "https://tuempresa.com/privacy",
+        "termsOfUseUrl": "https://tuempresa.com/terms"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "AI Assistant",
+        "full": "Asistente de IA para Microsoft Teams"
+    },
+    "description": {
+        "short": "Asistente de IA integrado en Teams",
+        "full": "Un bot impulsado por inteligencia artificial que puede responder preguntas, ayudar con código, asistir con redacción y mucho más. Simplemente envía un mensaje para comenzar."
+    },
+    "accentColor": "#5558AF",
+    "bots": [
+        {
+            "botId": "7a9856c0-bba7-422e-9699-7950de7c23c3",
+            "scopes": [
+                "personal",
+                "team",
+                "groupchat"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false,
+            "commandLists": [
+                {
+                    "scopes": ["personal", "team", "groupchat"],
+                    "commands": [
+                        {
+                            "title": "help",
+                            "description": "Muestra información de ayuda y comandos disponibles"
+                        },
+                        {
+                            "title": "clear",
+                            "description": "Limpia el historial de conversación"
+                        },
+                        {
+                            "title": "status",
+                            "description": "Muestra el estado del bot"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "*.ngrok-free.app",
+        "*.ngrok.io",
+        "*.azurewebsites.net",
+        "*.onrender.com",
+        "*.railway.app"
+    ]
+}
