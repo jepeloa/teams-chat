@@ -48,12 +48,24 @@ app.get('/health', (req, res) => {
 // ============================================
 
 // Crear fábrica de credenciales
-const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
+// Para MultiTenant, no se debe pasar TenantId
+const credentialsConfig = {
     MicrosoftAppId: config.MicrosoftAppId,
     MicrosoftAppPassword: config.MicrosoftAppPassword,
-    MicrosoftAppType: config.MicrosoftAppType,
-    MicrosoftAppTenantId: config.MicrosoftAppTenantId
-});
+    MicrosoftAppType: config.MicrosoftAppType
+};
+
+// Solo agregar TenantId si NO es MultiTenant
+if (config.MicrosoftAppType !== 'MultiTenant') {
+    credentialsConfig.MicrosoftAppTenantId = config.MicrosoftAppTenantId;
+}
+
+console.log('🔑 Configuración de credenciales:');
+console.log(`   App ID: ${config.MicrosoftAppId}`);
+console.log(`   App Type: ${config.MicrosoftAppType}`);
+console.log(`   Tenant ID: ${config.MicrosoftAppType !== 'MultiTenant' ? config.MicrosoftAppTenantId : '(No usado para MultiTenant)'}`);
+
+const credentialsFactory = new ConfigurationServiceClientCredentialFactory(credentialsConfig);
 
 // Crear autenticación
 const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication(
@@ -101,14 +113,13 @@ const bot = new TeamsAIBot();
 // Endpoint principal de mensajes
 // ============================================
 app.post('/api/messages', async (req, res) => {
-    // Log de solicitud entrante (modo debug)
-    if (config.debugMode) {
-        console.log('\n─────────────────────────────────────');
-        console.log('📥 Solicitud entrante a /api/messages');
-        console.log(`   Tipo: ${req.body?.type}`);
-        console.log(`   De: ${req.body?.from?.name || 'Desconocido'}`);
-        console.log('─────────────────────────────────────');
-    }
+    // Log de solicitud entrante (siempre activo para debugging)
+    console.log('\n─────────────────────────────────────');
+    console.log('📥 Solicitud entrante a /api/messages');
+    console.log(`   Tipo: ${req.body?.type}`);
+    console.log(`   De: ${req.body?.from?.name || 'Desconocido'}`);
+    console.log(`   Headers Auth: ${req.headers.authorization ? 'Presente' : 'NO PRESENTE'}`);
+    console.log('─────────────────────────────────────');
     
     try {
         // Procesar la solicitud con el adaptador
