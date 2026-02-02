@@ -30,3 +30,4 @@ tmp/
 temp/
 *.txt
 .env
+CREDENCIALES.md
